@@ -1,0 +1,49 @@
+@import url('../../App.css');
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem;
+    background-color: var(--terciary-color);
+    color: var(--primary-color);
+}
+
+header > a {
+    display: flex;
+    align-content: center;
+}
+
+header > div {
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+}
+
+header > a > button {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    padding: 0.4rem;
+    border-radius: 0.2rem;
+    
+}
+
+button:disabled {
+    color: var(--black);
+    background-color: #5c595a;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+header > div > span:last-child {
+    margin: 0rem 0rem 0rem 1rem;
+    color: var(--white);
+    cursor: pointer;
+}
+
+header > div > span:last-child:hover{
+    color: var(--primary-color);
+}

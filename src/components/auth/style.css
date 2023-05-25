@@ -1,0 +1,38 @@
+h2 {
+    font-weight: 700;
+    font-size: larger;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+input{
+    margin: 2rem 0rem 0rem 0rem;
+}
+
+input[type='text']{
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+}
+
+input[type='submit']{
+    border-radius: 0.3rem;
+    padding: 0.5rem;
+    background-color: var(--primary-color);
+}
+
+small{
+    margin: 2rem 0rem 0rem 0rem;
+}
+
+small > a {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+
+.errored{
+    border: solid 2px red;
+}
