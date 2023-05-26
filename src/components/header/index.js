@@ -35,6 +35,7 @@ const Header = () => {
                     </span>
                     <span onClick={()=>{
                         localStorage.removeItem('token');
+                        context.setErrors(false);
                         context.setIsLogged(false);
                         navigate('/');
                     }}>
