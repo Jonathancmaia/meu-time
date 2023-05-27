@@ -9,6 +9,7 @@ import Header from './components/header';
 import Home from './components/home';
 import Auth from './components/auth';
 import Welcome from './components/welcome';
+import Leagues from './components/leagues';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
             <Route path='/' element={<Welcome />} />
             <Route path='/home' element={<Home />} />
             <Route path='/auth' element={<Auth />} />
+            <Route path='/leagues/:country' element={<Leagues />} />
           </Routes>
         </ContextProvider>
       </HashRouter>

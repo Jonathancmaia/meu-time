@@ -32,7 +32,3 @@ small > a {
     color: var(--primary-color);
     font-weight: 700;
 }
-
-.errored{
-    border: solid 2px red;
-}

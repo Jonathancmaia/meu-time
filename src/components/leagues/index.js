@@ -1,23 +1,25 @@
 import React, { useContext, useEffect } from 'react';
 import './style.css';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useParams } from 'react-router-dom';
 import Context from '../../contexts/context';
 import Loading from '../loading';
 import Request from '../request';
 
-const Home = () => {
+const Leagues = () => {
 
     //Calling hooks
     const context = useContext(Context);
     const navigate = useNavigate();
-    const request = Request({path: 'countries'});
+    const { country } = useParams();
+    const thisPath = {path: 'leagues?search='+country};
+    const request = Request(thisPath);
 
     //If user is not logged in, go to index
     useEffect(()=>{
         if (!context.isLogged){
             navigate('/');
         }
-        
+
         request();
     }, []);
 
@@ -41,20 +43,20 @@ const Home = () => {
                 :
                     <>
                     <h1>
-                        Selecione o país desejado
+                        Selecione a liga/copa desejada
                     </h1>
                     <div className="content-handler">
                         {
-                            context.data?.countries?.response ? 
-                                context.data.countries?.response.map((country, i) => 
-                                    <Link key={i} to={'/leagues/'+country.name }>
-                                        {country.code ?
-                                            <img src={"https://media.api-sports.io/flags/"+country.code?.toLowerCase()+".svg"} alt={country.name+"flag"}/>
+                            context.data?.[thisPath.path]?.response ? 
+                                context.data?.[thisPath.path].response.map((league, i) => 
+                                    <Link key={i} /*to={'/leagues/'+country.name }*/ to="#">
+                                        {league.id ?
+                                            <img src={"https://media.api-sports.io/football/leagues/"+league.id?.toLowerCase()+".png"} alt={league.name+"flag"}/>
                                         :
                                             <div className="no-icon"></div>
                                         }
                                         
-                                        <button>{country.name}</button>
+                                        <button>{league.name}</button>
                                     </Link>
                                 )
                             :
@@ -67,4 +69,4 @@ const Home = () => {
     );
 };
 
-export default Home;
+export default Leagues;

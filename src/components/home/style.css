@@ -1,11 +1,1 @@
 @import url('../../App.css');
-
-button {
-    background-color: var(--primary-color);
-    padding: 0.5rem;
-    border-radius: 0.3rem;
-}
-
-button:active{
-    filter: brightness(80%);
-}

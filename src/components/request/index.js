@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext } from 'react';
 import axios from 'axios';
 import Context from '../../contexts/context';
 import Conf from '../../axios';
@@ -17,44 +17,51 @@ const Request = ({token, path, login}) => {
     const request = () => {
         
         async function getResponse(){
-            context.setIsLoading(true);
 
-            conf.axiosConfig.headers = {...conf.axiosConfig.headers, 'x-rapidapi-key': token}
-            
-            //Validating with api the given token
-            await axios.get(path, conf.axiosConfig)
-            .then((response) => {
+            //Verify if response is done before, if yes, don't do it again
+            if (!context.data[path]){
+                
+                //Start loading state
+                context.setIsLoading(true);
 
-                //Verify if token is recognized by API. If yes, save it on session storage
-                if (login === true){
-                    if (response.data.errors.token) {
-                        context.setErrors({"inputToken":"Token inserido está incorreto."});
-                    } else {
-                        localStorage.setItem('token', token);               
-                        context.setIsLogged(true);        
-                        navigate('/home');
-                    }
-                } else {
+                //Set token header
+                conf.axiosConfig.headers = {...conf.axiosConfig.headers, 'x-rapidapi-key': token};
 
-                    //if for some reason the token turn invalid or blocked, logout the user
-                    if (response.data.errors.token){
-                        if(localStorage.getItem('token')){
-                            context.setIsLogged(false);
-                            context.setErrors(false);
-                            localStorage.removeItem('token');
-                            navigate('/');
+                //Validating with api the given token
+                await axios.get(path, conf.axiosConfig)
+                .then((response) => {
+
+                    //Verify if token is recognized by API. If yes, save it on session storage
+                    if (login === true){
+                        if (response.data.errors.token) {
+                            context.setErrors({"inputToken":"Token inserido está incorreto."});
+                        } else {
+                            localStorage.setItem('token', token);               
+                            context.setIsLogged(true);        
+                            navigate('/home');
                         }
-                    } else if (response.data.errors.requests){
-                        context.setErrors({"container": "Você chegou ao máximo de requests diárias."});
                     } else {
-                        context.setData(response.data);   
+
+                        //if for some reason the token turn invalid or blocked, logout the user
+                        if (response.data.errors.token){
+                            if(localStorage.getItem('token')){
+                                context.setIsLogged(false);
+                                context.setErrors(false);
+                                localStorage.removeItem('token');
+                                navigate('/');
+                            }
+                        } else if (response.data.errors.requests){
+                            context.setErrors({"container": "Você chegou ao máximo de requests diárias."});
+                        } else {
+                            context.setData({...context.data, [path]: response.data});
+                        }
                     }
-                }
-            }).catch(function (error) {
-                context.setErrors({"container":"Houve algum problema de comunicação. Favor entrar em contato com o suporte. ( "+error+" )"});
-            }).finally(()=>{
-                context.setIsLoading(false);
-            });
+                }).catch(function (error) {
+                    context.setErrors({"container":"Houve algum problema de comunicação. Favor entrar em contato com o suporte. ( "+error+" )"});
+                }).finally(()=>{
+                    context.setIsLoading(false);
+                });
+            }
         }
 
         getResponse();
