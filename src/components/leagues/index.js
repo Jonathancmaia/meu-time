@@ -23,6 +23,25 @@ const Leagues = () => {
         request();
     }, []);
 
+    //Open drop down menu
+    const openDropDownMenu = (e, league) => {
+        document.getElementById(league+'menu').classList.toggle("show");
+    };
+
+    //Close drop down menu
+    window.onclick = function(e) {
+        if (!e.target.parentNode.classList.contains('item')) {
+            var dropdowns = document.getElementsByClassName("drop-down-menu");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                    }
+                }
+        }
+    }
+
     return (
         <div className="container">
             {
@@ -49,15 +68,25 @@ const Leagues = () => {
                         {
                             context.data?.[thisPath.path]?.response ? 
                                 context.data?.[thisPath.path].response.map((league, i) => 
-                                    <Link key={i} /*to={'/leagues/'+country.name }*/ to="#">
-                                        {league.id ?
-                                            <img src={"https://media.api-sports.io/football/leagues/"+league.id?.toLowerCase()+".png"} alt={league.name+"flag"}/>
+                                    <div className="item" key={i} onClick={(e)=>{openDropDownMenu(e, league.league.id)}}>
+                                        {league.league ?
+                                            <img src={league.league.logo} alt={league.league.name+"flag"}/>
                                         :
                                             <div className="no-icon"></div>
                                         }
-                                        
-                                        <button>{league.name}</button>
-                                    </Link>
+                                        <button>{league.league.name}</button>
+                                        <div className="drop-down-menu" id={league.league.id+"menu"}>
+                                            {league.seasons ? 
+                                                league.seasons.map((season, i) => 
+                                                    <Link key={i}  to={'/leagues/'+league.league.id+'/'+season.year}>
+                                                        {season.year}
+                                                    </Link>
+                                                )
+                                            :
+                                                <></>
+                                            }
+                                        </div>
+                                    </div>
                                 )
                             :
                                 <></>

@@ -54,15 +54,18 @@ input {
 	justify-content: space-between;
 }
 
-.content-handler > a {
+.content-handler > a, .item {
 	display: flex;
 	justify-content: center;
 	align-content: center;
 	margin: 1rem 0.2rem 1rem 0.2rem;
 }
 
-.content-handler > a > img, .no-icon {
+.content-handler > a > img, .no-icon, .item > img {
 	height: 3rem;
+	width: 4rem;
+	object-fit: cover;
+	object-position: left;
 	border-radius: 0.3rem  0rem  0rem  0.3rem;
 	background-color: var(--primary-color);
 }
@@ -71,7 +74,7 @@ input {
 	width: 4rem;
 }
 
-.content-handler > a > button {
+.content-handler > a > button, .item > button {
 	width: 10rem;
 	height: 3rem;
 	background-color: var(--primary-color);
