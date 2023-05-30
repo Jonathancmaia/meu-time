@@ -11,6 +11,7 @@ import Auth from './components/auth';
 import Welcome from './components/welcome';
 import Leagues from './components/leagues';
 import Teams from './components/teams';
+import Team from './components/team';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
             <Route path='/auth' element={<Auth />} />
             <Route path='/leagues/:country' element={<Leagues />} />
             <Route path='/leagues/:league/:season' element={<Teams />} />
+            <Route path='/leagues/:league/:season/:team' element={<Team />} />
           </Routes>
         </ContextProvider>
       </HashRouter>

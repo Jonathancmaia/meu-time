@@ -1,0 +1,43 @@
+@import url('../../App.css');
+
+section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 1rem 0rem 1rem 0rem;
+}
+
+.team-header{
+    padding: 2rem;
+}
+
+.team-header > div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-header > div > img{
+    width: 4rem;
+    max-height: 4rem;
+}
+
+table{
+    margin: 1rem;
+}
+
+table > thead > tr > th {
+    font-weight: 700;
+    padding: 0.5rem;
+}
+
+table > tbody > tr > td {
+    text-align: center;
+    padding: 0.5rem;
+}
+
+tr:nth-child(even) {
+    background-color: rgba(0, 0, 0 , 0.25);
+}

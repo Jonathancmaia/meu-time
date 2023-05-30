@@ -42,27 +42,27 @@ const Leagues = () => {
                     <Loading></Loading>
                 :
                     <>
-                    <h1>
-                        Selecione a liga/copa desejada
-                    </h1>
-                    <div className="content-handler">
-                        {
-                            context.data?.[thisPath.path]?.response ? 
-                                context.data?.[thisPath.path].response.map((team, i) => 
-                                    <Link key={i} /*to={'/leagues/'+country.name }*/ to="#">
-                                        {team.team.logo ?
-                                            <img src={team.team.logo} alt={team.team.name+" logo"}/>
-                                        :
-                                            <div className="no-icon"></div>
-                                        }
-                                        
-                                        <button>{team.team.name}</button>
-                                    </Link>
-                                )
-                            :
-                                <></>
-                        }
-                    </div>
+                        <h1>
+                            Selecione o time desejado
+                        </h1>
+                        <div className="content-handler">
+                            {
+                                context.data?.[thisPath.path]?.response ? 
+                                    context.data?.[thisPath.path].response.map((team, i) => 
+                                        <Link key={i} to={'/leagues/'+league+'/'+season+'/'+team.team.id }>
+                                            {team.team.logo ?
+                                                <img src={team.team.logo} alt={team.team.name+" logo"}/>
+                                            :
+                                                <div className="no-icon"></div>
+                                            }
+                                            
+                                            <button>{team.team.name}</button>
+                                        </Link>
+                                    )
+                                :
+                                    <></>
+                            }
+                        </div>
                     </>
             }
         </div>
