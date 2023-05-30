@@ -10,9 +10,10 @@ const Chart = ({goalsForTotal, goalsAgainstTotal}) => {
     const labels = Object.keys(goalsForTotal.minute);
 
     let goalsFor = [];
+    
     labels.forEach(
         (key)=>{
-            if(goalsForTotal[key]?.total === null){
+            if(goalsForTotal.minute[key]?.total === null){
                 goalsFor = [...goalsFor, 0];
             } else {
                 goalsFor = [...goalsFor, goalsForTotal.minute[key].total];
@@ -53,15 +54,15 @@ const Chart = ({goalsForTotal, goalsAgainstTotal}) => {
                     datasets: [{
                         label: "Gols feitos",
                         data: goalsFor,
-                        borderColor: 'rgb(255, 99, 132)',
-                        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                        borderColor: 'rgb(53, 162, 235)',
+                        backgroundColor: 'rgba(53, 162, 235, 0.5)',
                         yAxisID: 'y'
                     },
                     {
                         label: "Gols sofridos",
                         data: goalsAgainst,
-                        borderColor: 'rgb(53, 162, 235)',
-                        backgroundColor: 'rgba(53, 162, 235, 0.5)',
+                        borderColor: 'rgb(139, 0, 0)',
+                        backgroundColor: 'rgba(139, 0, 0, 0.5)',
                         yAxisID: 'y1'
                     }]
                 }}

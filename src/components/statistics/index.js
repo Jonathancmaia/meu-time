@@ -42,15 +42,23 @@ const Statistics = () => {
                                 Formação mais utilizada
                             </h1>
                             <h2>
-                                {
-                                    context?.data?.[thisPath.path]?.response?.lineups?.reduce((maxPlayedLineup, currentLineup) => {
-                                        if (currentLineup.played > maxPlayedLineup.played) {
-                                            return currentLineup;
-                                        } else {
-                                            return maxPlayedLineup;
-                                        }
-                                    }, ['Dado não disponível'])
-                                }
+                                {(() => {
+                                    const lineups = context?.data?.[thisPath.path]?.response?.lineups;
+
+                                    if (!lineups || lineups.length === 0) {
+                                        return <div>dado não disponível</div>;
+                                    }
+
+                                    const maxPlayedLineup = lineups.reduce((maxPlayedLineup, currentLineup) => {
+                                    if (currentLineup.played > maxPlayedLineup.played) {
+                                        return currentLineup;
+                                    } else {
+                                        return maxPlayedLineup;
+                                    }
+                                    });
+
+                                    return maxPlayedLineup.formation;
+                                })()}
                             </h2>
                         </section>
 
@@ -107,7 +115,7 @@ const Statistics = () => {
                                             goalsAgainstTotal={context?.data?.[thisPath.path]?.response?.goals?.against}
                                         />
                                     :
-                                        <div>Loading Chart...</div>
+                                        <Loading></Loading>
                             }
                         </section>
                     </>
