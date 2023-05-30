@@ -12,6 +12,7 @@ import Welcome from './components/welcome';
 import Leagues from './components/leagues';
 import Teams from './components/teams';
 import Team from './components/team';
+import Statistics from './components/statistics';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
             <Route path='/leagues/:country' element={<Leagues />} />
             <Route path='/leagues/:league/:season' element={<Teams />} />
             <Route path='/leagues/:league/:season/:team' element={<Team />} />
+            <Route path='/statistics/:league/:season/:team' element={<Statistics />} />
           </Routes>
         </ContextProvider>
       </HashRouter>
