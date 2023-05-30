@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/meu-time/static/css/main.b9c39dde.css",
+    "main.js": "/meu-time/static/js/main.1161c8c8.js",
+    "static/js/787.0d8e1162.chunk.js": "/meu-time/static/js/787.0d8e1162.chunk.js",
+    "index.html": "/meu-time/index.html",
+    "main.b9c39dde.css.map": "/meu-time/static/css/main.b9c39dde.css.map",
+    "main.1161c8c8.js.map": "/meu-time/static/js/main.1161c8c8.js.map",
+    "787.0d8e1162.chunk.js.map": "/meu-time/static/js/787.0d8e1162.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b9c39dde.css",
+    "static/js/main.1161c8c8.js"
+  ]
+}
