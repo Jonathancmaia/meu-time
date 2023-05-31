@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import './style.css';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useNavigate, useParams, Link, useSearchParams } from 'react-router-dom';
 import Context from '../../contexts/context';
 import Loading from '../loading';
 import Request from '../request';
@@ -13,6 +13,7 @@ const Leagues = () => {
     const { league, season, team } = useParams();
     const thisPath = {path: 'players?league='+league+'&season='+season+'&team='+team};
     const request = Request(thisPath);
+    const [searchParams, setSearchParams] = useSearchParams();
  
     //If user is not logged in, go to index
     useEffect(()=>{
@@ -42,6 +43,14 @@ const Leagues = () => {
                     <Loading></Loading>
                 :
                     <>
+                        {/* Header */}
+                        <section className="team-header">
+                            <img src={searchParams.get("logo")} alt={searchParams.get("name")+'logo'}/>
+                            <h1>
+                                {searchParams.get("name")}
+                            </h1>
+                        </section>
+
                         {/* Players table */}
                         <section>
                             <h1>

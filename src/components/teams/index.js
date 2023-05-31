@@ -49,7 +49,7 @@ const Leagues = () => {
                             {
                                 context.data?.[thisPath.path]?.response ? 
                                     context.data?.[thisPath.path].response.map((team, i) => 
-                                        <Link key={i} to={'/leagues/'+league+'/'+season+'/'+team.team.id }>
+                                        <Link key={i} to={'/leagues/'+league+'/'+season+'/'+team.team.id+'?logo='+team.team.logo+'&name='+team.team.name}>
                                             {team.team.logo ?
                                                 <img src={team.team.logo} alt={team.team.name+" logo"}/>
                                             :
