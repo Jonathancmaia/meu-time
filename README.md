@@ -4,7 +4,7 @@ Meu Time is a website developed in React.js for Trade Technology technical test 
 
 In that App, user have to sign up <a href='https://dashboard.api-football.com/register'>here</a> and use API Token to use Meu Time App. Then, the user will be able to check all leagues and teams informations and metrics.
 
-##Features
+## Features
 - Get contries and all leagues from them.
 - Get all teams that are part of these leagues.
 - Get results, metrics and players from these teams in the selected season.
