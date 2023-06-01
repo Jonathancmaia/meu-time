@@ -28,11 +28,6 @@ header > a > button {
     
 }
 
-button:disabled {
-    color: var(--black);
-    background-color: #5c595a;
-}
-
 h1 {
     font-size: 2rem;
     font-weight: 700;

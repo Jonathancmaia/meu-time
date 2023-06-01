@@ -8,9 +8,25 @@ import Request from '../request';
 const Home = () => {
 
     //Calling hooks
-    const context = useContext(Context);
     const navigate = useNavigate();
     const request = Request({path: 'countries'});
+
+    //context interface
+    interface contextType {
+        isLogged: boolean;
+        setIsLogged: any;
+        isLoading: boolean;
+        setIsLoading: boolean;
+        setErrors: any;
+        errors: any;
+        data: {
+            countries: {
+                response: any;
+            }
+        };
+    }
+
+    const context = useContext<contextType>(Context);
 
     //If user is not logged in, go to index
     useEffect(()=>{
@@ -46,7 +62,7 @@ const Home = () => {
                     <div className="content-handler">
                         {
                             context.data?.countries?.response ? 
-                                context.data.countries?.response.map((country, i) => 
+                                context.data?.countries?.response.map((country, i) => 
                                     <Link key={i} to={'/leagues/'+country.name }>
                                         {country.code ?
                                             <img src={"https://media.api-sports.io/flags/"+country.code?.toLowerCase()+".svg"} alt={country.name+"flag"}/>

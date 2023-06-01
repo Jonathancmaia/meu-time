@@ -5,24 +5,37 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Header = () => {
 
-    const context = useContext(Context);
     const location = useLocation().pathname;
     const navigate = useNavigate();
+
+    //context interface
+    interface contextType {
+        isLogged: boolean;
+        setIsLogged: any;
+        isLoading: boolean;
+        setIsLoading: boolean;
+        setErrors: any;
+        errors: any;
+    }
+
+    const context = useContext<contextType>(Context);
     
     return (
         <header>
-            <Link to="/" disabled = {
-
-                //If link is on the page where this point, disable it
+            {
                 location === '/auth' ?
-                    true
+                    <Link to='/'>
+                        <h1>
+                            Meu Time
+                        </h1>
+                    </Link>
                 :
-                    false
-            }>
-                <h1>
-                    Meu Time
-                </h1>
-            </Link>
+                    <Link to=''>
+                        <h1>
+                            Meu Time
+                        </h1>
+                    </Link>
+            }
             {
 
             //Verify if user is logged

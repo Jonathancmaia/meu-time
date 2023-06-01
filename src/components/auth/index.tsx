@@ -11,8 +11,18 @@ const Auth = () => {
 
     //calling hooks
     const navigate = useNavigate();
-    const context = useContext(Context);
     const request = Request({token: token, path: 'status', login: true});
+
+    //context interface
+    interface contextType {
+        isLogged: boolean;
+        isLoading: boolean;
+        setIsLoading: any;
+        setErrors: any;
+        errors: any;
+    }
+
+    const context = useContext<contextType>(Context);
     
     //if user is logged, go to home page
     useEffect(()=>{
