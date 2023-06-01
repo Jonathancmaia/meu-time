@@ -9,7 +9,7 @@ const Home = () => {
 
     //Calling hooks
     const navigate = useNavigate();
-    const request = Request({path: 'countries'});
+    const request = Request({token: false, path: 'countries', login: false});
 
     //context interface
     interface contextType {

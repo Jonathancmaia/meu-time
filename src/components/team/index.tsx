@@ -11,8 +11,8 @@ const Leagues = () => {
     const navigate = useNavigate();
     const { league, season, team } = useParams();
     const thisPath = {path: 'players?league='+league+'&season='+season+'&team='+team};
-    const request = Request(thisPath);
-    const [searchParams, setSearchParams] = useSearchParams();
+    const request = Request({token: false, path: thisPath.path, login: false});
+    const [searchParams] = useSearchParams();
 
     //context interface
     interface contextType {

@@ -11,7 +11,7 @@ const Leagues = () => {
     const navigate = useNavigate();
     const { league, season } = useParams();
     const thisPath = {path: 'teams?league='+league+'&season='+season};
-    const request = Request(thisPath);
+    const request = Request({token: false, path: thisPath.path, login: false});
 
     //context interface
     interface contextType {

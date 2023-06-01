@@ -11,7 +11,7 @@ const Leagues = () => {
     const navigate = useNavigate();
     const { country } = useParams();
     const thisPath = {path: 'leagues?search='+country};
-    const request = Request(thisPath);
+    const request = Request({token: false, path: thisPath.path, login: false});
 
     //context interface
     interface contextType {

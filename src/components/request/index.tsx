@@ -4,7 +4,13 @@ import Context from '../../contexts/context';
 import Conf from '../../axios';
 import { useNavigate } from 'react-router-dom';
 
-const Request = ({token, path, login}) => {
+interface params {
+    token: any;
+    path: string;
+    login: boolean;
+}
+
+const Request = ({token, path, login}: params) => {
 
     //Call hooks
     const navigate = useNavigate();
