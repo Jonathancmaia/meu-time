@@ -8,8 +8,21 @@ const Request = ({token, path, login}) => {
 
     //Call hooks
     const navigate = useNavigate();
-    const context = useContext(Context);
     const conf = Conf();
+
+    //context interface
+    interface contextType {
+        isLogged: boolean;
+        setIsLogged: any;
+        isLoading: boolean;
+        setIsLoading: any;
+        errors: any;
+        setErrors: any;
+        setData: any;
+        data: any;
+    }
+
+    const context = useContext<contextType>(Context);
 
     if (!token) {token = localStorage.getItem('token')};
     if (!login) {login = false};

@@ -8,10 +8,19 @@ import './style.css';
 
 const Statistics = () => {
 
-    const context = useContext(Context);
     const { league, season, team } = useParams();
-    const thisPath = {path: 'teams/statistics?league='+league+'&season='+season+'&team='+team};
+    const thisPath:any = {path: 'teams/statistics?league='+league+'&season='+season+'&team='+team};
     const request = Request(thisPath);
+
+    //context interface
+    interface contextType {
+        isLogged: boolean;
+        isLoading: boolean;
+        errors: any;
+        data: any;
+    }
+
+    const context = useContext<contextType>(Context);
     
     useEffect(()=>{
         request();

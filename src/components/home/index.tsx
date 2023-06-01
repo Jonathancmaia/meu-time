@@ -19,11 +19,7 @@ const Home = () => {
         setIsLoading: boolean;
         setErrors: any;
         errors: any;
-        data: {
-            countries: {
-                response: any;
-            }
-        };
+        data: any;
     }
 
     const context = useContext<contextType>(Context);

@@ -8,12 +8,21 @@ import Request from '../request';
 const Leagues = () => {
 
     //Calling hooks
-    const context = useContext(Context);
     const navigate = useNavigate();
     const { league, season, team } = useParams();
     const thisPath = {path: 'players?league='+league+'&season='+season+'&team='+team};
     const request = Request(thisPath);
     const [searchParams, setSearchParams] = useSearchParams();
+
+    //context interface
+    interface contextType {
+        isLogged: boolean;
+        isLoading: boolean;
+        errors: any;
+        data: any;
+    }
+
+    const context = useContext<contextType>(Context);
  
     //If user is not logged in, go to index
     useEffect(()=>{
